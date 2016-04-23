@@ -30,10 +30,10 @@ public class TreeNode implements Parcelable {
     }
 
     public boolean isLeafNode() {
-        if (children == null || children.isEmpty()) {
-            return true;
-        } else {
+        if (children != null && !children.isEmpty()) {
             return false;
+        } else {
+            return true;
         }
     }
 
