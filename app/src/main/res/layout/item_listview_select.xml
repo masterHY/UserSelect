@@ -8,9 +8,10 @@
 
     <CheckBox
         android:id="@+id/personnel_listview_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@drawable/zdy_check_box"
+
         android:button="@null"
         android:focusable="false" />
 
@@ -23,7 +24,7 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:textColor="@color/dark_grey"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
 
 </LinearLayout>

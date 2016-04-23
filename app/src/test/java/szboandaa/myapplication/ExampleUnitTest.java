@@ -1,4 +1,4 @@
-package szboanda.myapplication;
+package szboandaa.myapplication;
 
 import org.junit.Test;
 

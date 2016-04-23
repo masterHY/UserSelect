@@ -1,6 +1,7 @@
-package szboanda.myapplication;
+package szboandaa.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,25 +13,24 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by 张浩宇 on 2016/4/16.
+ * Created by zhy on 2016/4/16.
  */
-public class SelectAdapter extends BaseAdapter implements SelectAdapter.checkCallBack {
+public class SelectAdapter extends BaseAdapter {
 
 
     private List<TreeNode> mNodeList;
     private LayoutInflater mInflater;
+    private Context context;
+    private OnSelectListener onSelectListener;
 
-    @Override
-    public void test() {
 
+    public interface OnSelectListener {
+        void onSelectNotificate();
     }
 
-    public interface checkCallBack{
-        void test();
-    }
-
-
-    public SelectAdapter(Context context, List<TreeNode> mNodeList) {
+    public SelectAdapter(Context context, List<TreeNode> mNodeList, OnSelectListener onSelectListener) {
+        this.context = context;
+        this.onSelectListener = onSelectListener;
         this.mNodeList = mNodeList;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -65,11 +65,17 @@ public class SelectAdapter extends BaseAdapter implements SelectAdapter.checkCal
         }
 
         holder.mText.setText(mNodeList.get(position).getText());
+        if(mNodeList.get(position).isChecked()){
+            holder.mText.setTextColor(Color.BLACK);
+        }else {
+            holder.mText.setTextColor(context.getResources().getColor(R.color.dark_grey));
+        }
         holder.mCheckBox.setChecked(mNodeList.get(position).isChecked());
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mNodeList.get(pos).setChecked(isChecked);
+                onSelectListener.onSelectNotificate();
             }
         });
 
